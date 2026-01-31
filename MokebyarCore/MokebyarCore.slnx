@@ -1,0 +1,23 @@
+<Solution>
+    <Configurations>
+        <Platform Name="Any CPU" />
+    </Configurations>
+    <Folder Name="/src/">
+        <Project Path="src/MokebyarCore.Domain/MokebyarCore.Domain.csproj" />
+        <Project Path="src/MokebyarCore.Application/MokebyarCore.Application.csproj" />
+        <Project Path="src/MokebyarCore.EntityFrameworkCore/MokebyarCore.EntityFrameworkCore.csproj" />
+        <Project Path="src/MokebyarCore.Domain.Shared/MokebyarCore.Domain.Shared.csproj" />
+        <Project Path="src/MokebyarCore.Application.Contracts/MokebyarCore.Application.Contracts.csproj" />
+        <Project Path="src/MokebyarCore.HttpApi/MokebyarCore.HttpApi.csproj" />
+        <Project Path="src/MokebyarCore.HttpApi.Client/MokebyarCore.HttpApi.Client.csproj" />
+        <Project Path="src/MokebyarCore.DbMigrator/MokebyarCore.DbMigrator.csproj" />
+        <Project Path="src/MokebyarCore.HttpApi.Host/MokebyarCore.HttpApi.Host.csproj" />
+    </Folder>
+    <Folder Name="/test/">
+        <Project Path="test/MokebyarCore.Application.Tests/MokebyarCore.Application.Tests.csproj" />
+        <Project Path="test/MokebyarCore.EntityFrameworkCore.Tests/MokebyarCore.EntityFrameworkCore.Tests.csproj" />
+        <Project Path="test/MokebyarCore.TestBase/MokebyarCore.TestBase.csproj" />
+        <Project Path="test/MokebyarCore.Domain.Tests/MokebyarCore.Domain.Tests.csproj" />
+        <Project Path="test/MokebyarCore.HttpApi.Client.ConsoleTestApp/MokebyarCore.HttpApi.Client.ConsoleTestApp.csproj" />
+    </Folder>
+</Solution>

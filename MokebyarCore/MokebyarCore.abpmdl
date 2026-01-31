@@ -1,0 +1,109 @@
+{
+  "template": "app",
+  "imports": {
+    "Volo.Abp.LeptonXLiteTheme": {
+      "version": "5.0.1",
+      "isInstalled": true,
+      "creationTime": "01/14/2026 14:58:28 +00:00"
+    },
+    "Volo.Abp.Account": {
+      "version": "10.0.1",
+      "isInstalled": true,
+      "creationTime": "01/14/2026 14:58:28 +00:00"
+    },
+    "Volo.Abp.OpenIddict": {
+      "version": "10.0.1",
+      "isInstalled": true,
+      "creationTime": "01/14/2026 14:58:28 +00:00"
+    },
+    "Volo.Abp.Identity": {
+      "version": "10.0.1",
+      "isInstalled": true,
+      "creationTime": "01/14/2026 14:58:28 +00:00"
+    },
+    "Volo.Abp.TenantManagement": {
+      "version": "10.0.1",
+      "isInstalled": true,
+      "creationTime": "01/14/2026 14:58:28 +00:00"
+    },
+    "Volo.Abp.SettingManagement": {
+      "version": "10.0.1",
+      "isInstalled": true,
+      "creationTime": "01/14/2026 14:58:28 +00:00"
+    },
+    "Volo.Abp.PermissionManagement": {
+      "version": "10.0.1",
+      "isInstalled": true,
+      "creationTime": "01/14/2026 14:58:28 +00:00"
+    },
+    "Volo.Abp.FeatureManagement": {
+      "version": "10.0.1",
+      "isInstalled": true,
+      "creationTime": "01/14/2026 14:58:28 +00:00"
+    }
+  },
+  "folders": {
+    "items": {
+      "src": {},
+      "test": {}
+    }
+  },
+  "packages": {
+    "MokebyarCore.Application": {
+      "path": "src/MokebyarCore.Application/MokebyarCore.Application.abppkg",
+      "folder": "src"
+    },
+    "MokebyarCore.Application.Tests": {
+      "path": "test/MokebyarCore.Application.Tests/MokebyarCore.Application.Tests.abppkg",
+      "folder": "test"
+    },
+    "MokebyarCore.Domain.Shared": {
+      "path": "src/MokebyarCore.Domain.Shared/MokebyarCore.Domain.Shared.abppkg",
+      "folder": "src"
+    },
+    "MokebyarCore.Application.Contracts": {
+      "path": "src/MokebyarCore.Application.Contracts/MokebyarCore.Application.Contracts.abppkg",
+      "folder": "src"
+    },
+    "MokebyarCore.HttpApi": {
+      "path": "src/MokebyarCore.HttpApi/MokebyarCore.HttpApi.abppkg",
+      "folder": "src"
+    },
+    "MokebyarCore.HttpApi.Client": {
+      "path": "src/MokebyarCore.HttpApi.Client/MokebyarCore.HttpApi.Client.abppkg",
+      "folder": "src"
+    },
+    "MokebyarCore.EntityFrameworkCore.Tests": {
+      "path": "test/MokebyarCore.EntityFrameworkCore.Tests/MokebyarCore.EntityFrameworkCore.Tests.abppkg",
+      "folder": "test"
+    },
+    "MokebyarCore.EntityFrameworkCore": {
+      "path": "src/MokebyarCore.EntityFrameworkCore/MokebyarCore.EntityFrameworkCore.abppkg",
+      "folder": "src"
+    },
+    "MokebyarCore.TestBase": {
+      "path": "test/MokebyarCore.TestBase/MokebyarCore.TestBase.abppkg",
+      "folder": "test"
+    },
+    "MokebyarCore.Domain.Tests": {
+      "path": "test/MokebyarCore.Domain.Tests/MokebyarCore.Domain.Tests.abppkg",
+      "folder": "test"
+    },
+    "MokebyarCore.HttpApi.Client.ConsoleTestApp": {
+      "path": "test/MokebyarCore.HttpApi.Client.ConsoleTestApp/MokebyarCore.HttpApi.Client.ConsoleTestApp.abppkg",
+      "folder": "test"
+    },
+    "MokebyarCore.DbMigrator": {
+      "path": "src/MokebyarCore.DbMigrator/MokebyarCore.DbMigrator.abppkg",
+      "folder": "src"
+    },
+    "MokebyarCore.HttpApi.Host": {
+      "path": "src/MokebyarCore.HttpApi.Host/MokebyarCore.HttpApi.Host.abppkg",
+      "folder": "src"
+    },
+    "MokebyarCore.Domain": {
+      "path": "src/MokebyarCore.Domain/MokebyarCore.Domain.abppkg",
+      "folder": "src"
+    }
+  }
+}
