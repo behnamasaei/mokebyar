@@ -14,6 +14,7 @@ using Volo.Abp.OpenIddict.EntityFrameworkCore;
 using Volo.Abp.TenantManagement;
 using Volo.Abp.TenantManagement.EntityFrameworkCore;
 using MokebyarCore.MokebModels;
+using MokebyarCore.Users;
 using Volo.Abp.EntityFrameworkCore.Modeling;
 
 namespace MokebyarCore.EntityFrameworkCore;
@@ -138,6 +139,8 @@ public class MokebyarCoreDbContext :
             b.Property(x => x.State).HasMaxLength(150);
             b.Property(x => x.City).HasMaxLength(150);
             b.HasIndex(x => x.PassportNumber).IsUnique();
+            b.Property(x => x.ProfileBlob)
+                .HasColumnType("bytea");
 
             b.HasMany(x => x.Reservations)
                 .WithOne(x => x.Pilgrim)

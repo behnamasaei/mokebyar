@@ -21,6 +21,8 @@ public class Pilgrim : AuditedAggregateRoot<Guid>, IMultiTenant
     public string? Nationality { get; set; }
     public string? State { get; set; }
     public string? City { get; set; }
+    public byte[]? ProfileBlob { get; set; }
+    
 
     public virtual ICollection<Reservation>? Reservations { get; set; }
     public virtual ICollection<Traffic>? Traffics { get; set; }
