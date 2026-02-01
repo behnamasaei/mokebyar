@@ -57,7 +57,7 @@ public class MokebyarCoreEntityFrameworkCoreModule : AbpModule
             /* The main point to change your DBMS.
              * See also MokebyarCoreDbContextFactory for EF Core tooling. */
 
-            options.UseSqlServer();
+            options.UseNpgsql();
 
         });
         

@@ -35,6 +35,7 @@ using Volo.Abp.AspNetCore.Mvc.UI.Theme.LeptonXLite.Bundling;
 using Microsoft.AspNetCore.Hosting;
 using Volo.Abp.AspNetCore.Mvc.Libs;
 using Volo.Abp.AspNetCore.Serilog;
+using Volo.Abp.EntityFrameworkCore.PostgreSql;
 using Volo.Abp.Identity;
 using Volo.Abp.OpenIddict;
 using Volo.Abp.Swashbuckle;
@@ -53,7 +54,8 @@ namespace MokebyarCore;
     typeof(MokebyarCoreEntityFrameworkCoreModule),
     typeof(AbpAccountWebOpenIddictModule),
     typeof(AbpSwashbuckleModule),
-    typeof(AbpAspNetCoreSerilogModule)
+    typeof(AbpAspNetCoreSerilogModule),
+    typeof(AbpEntityFrameworkCorePostgreSqlModule)
     )]
 public class MokebyarCoreHttpApiHostModule : AbpModule
 {

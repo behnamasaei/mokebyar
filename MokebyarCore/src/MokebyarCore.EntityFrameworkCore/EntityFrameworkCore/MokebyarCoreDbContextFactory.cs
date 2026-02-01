@@ -17,7 +17,7 @@ public class MokebyarCoreDbContextFactory : IDesignTimeDbContextFactory<Mokebyar
         MokebyarCoreEfCoreEntityExtensionMappings.Configure();
 
         var builder = new DbContextOptionsBuilder<MokebyarCoreDbContext>()
-            .UseSqlServer(configuration.GetConnectionString("Default"));
+            .UseNpgsql(configuration.GetConnectionString("Default"));
         
         return new MokebyarCoreDbContext(builder.Options);
     }
