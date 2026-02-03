@@ -105,7 +105,11 @@ public class OpenIddictDataSeedContributor : OpenIddictDataSeedContributorBase, 
                 consentType: OpenIddictConstants.ConsentTypes.Implicit,
                 displayName: "Swagger Application",
                 secret: null,
-                grantTypes: new List<string> { OpenIddictConstants.GrantTypes.AuthorizationCode, },
+                // grantTypes: new List<string> { OpenIddictConstants.GrantTypes.AuthorizationCode, },
+                grantTypes: new List<string> { 
+                    OpenIddictConstants.GrantTypes.AuthorizationCode, 
+                    OpenIddictConstants.GrantTypes.Password  // <--- این خط اضافه شد
+                },
                 scopes: commonScopes,
                 redirectUris: new List<string> { $"{swaggerRootUrl}/swagger/oauth2-redirect.html" },
                 clientUri: swaggerRootUrl.EnsureEndsWith('/') + "swagger",

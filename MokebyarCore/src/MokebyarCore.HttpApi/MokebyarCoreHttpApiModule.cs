@@ -7,6 +7,7 @@ using Volo.Abp.Identity;
 using Volo.Abp.Modularity;
 using Volo.Abp.PermissionManagement.HttpApi;
 using Volo.Abp.Localization;
+using Volo.Abp.OpenIddict;
 using Volo.Abp.TenantManagement;
 
 namespace MokebyarCore;
@@ -18,7 +19,8 @@ namespace MokebyarCore;
     typeof(AbpAccountHttpApiModule),
     typeof(AbpIdentityHttpApiModule),
     typeof(AbpTenantManagementHttpApiModule),
-    typeof(AbpFeatureManagementHttpApiModule)
+    typeof(AbpFeatureManagementHttpApiModule),
+    typeof(AbpOpenIddictDomainModule)
     )]
 public class MokebyarCoreHttpApiModule : AbpModule
 {

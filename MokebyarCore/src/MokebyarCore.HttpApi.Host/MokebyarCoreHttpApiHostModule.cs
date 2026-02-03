@@ -55,7 +55,8 @@ namespace MokebyarCore;
     typeof(AbpAccountWebOpenIddictModule),
     typeof(AbpSwashbuckleModule),
     typeof(AbpAspNetCoreSerilogModule),
-    typeof(AbpEntityFrameworkCorePostgreSqlModule)
+    typeof(AbpEntityFrameworkCorePostgreSqlModule),
+    typeof(AbpOpenIddictDomainModule)
     )]
 public class MokebyarCoreHttpApiHostModule : AbpModule
 {
@@ -217,8 +218,8 @@ public class MokebyarCoreHttpApiHostModule : AbpModule
                     {
                         Implicit = new OpenApiOAuthFlow
                         {
-                            AuthorizationUrl = new Uri("https://localhost:44319/connect/authorize"),
-                            TokenUrl = new Uri("https://localhost:44319/connect/token"),
+                            AuthorizationUrl = new Uri("https://0.0.0.0:44319/connect/authorize"),
+                            TokenUrl = new Uri("https://0.0.0.0:44319/connect/token"),
                             Scopes = new Dictionary<string, string>
                             {
                                 { "openid", "OpenID Connect" },

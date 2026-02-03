@@ -3,7 +3,8 @@
 </script>
 
 <template>
-<FaceScanner/>
+
+
 </template>
 
 <style scoped>
