@@ -1,4 +1,5 @@
 import type {TokenResponse} from "~/types/TokenResponse";
+import {parseQuery} from "vue-router";
 
 export default defineEventHandler(async (event) => {
     process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0'

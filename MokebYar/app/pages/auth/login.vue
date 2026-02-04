@@ -173,6 +173,7 @@ const tokenStore = useTokenStore()
 const profileStore = useProfileStore()
 const loginStore = useLoginStore()
 const userStore = useUserStore()
+const permissionStore = usePermissionStore()
 
 
 const isLoading = computed(() => tokenStore.isLoading);
@@ -189,6 +190,7 @@ const handleLogin = async () => {
   await loginStore.fetchAsync(formData.email, formData.password)
   await profileStore.fetchAsync()
   await userStore.fetchCurrentUserAsync()
+  await permissionStore.fetchUserPermissionAsync()
 };
 </script>
 

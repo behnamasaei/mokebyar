@@ -1,31 +1,40 @@
 import {defineStore} from 'pinia'
-import type {TokenResponse} from '~/types/TokenResponse'
-import type {Profile} from "~/types/Profile";
+import type {PermissionResponse} from '~/types/Permission'
+import {useUserStore} from "~/stores/userStore";
 
-export const useLoginStore = defineStore('loginStore', {
+export const usePermissionStore = defineStore('permissionStore', {
     state: () => ({
-        isLoading: false as boolean,
+        isLoading: false,
+        permissions: null as PermissionResponse | null
     }),
 
     actions: {
-        async fetchAsync(usernameOrEmail: string, password: string): Promise<unknown> {
+        async fetchUserPermissionAsync(): Promise<PermissionResponse> {
             try {
                 this.isLoading = true
-                const res = await $fetch<unknown>('/api/auth/login', {
-                    method: 'POST',
-                    body: {
-                        username: usernameOrEmail,
-                        password: password,
-                    },
-                    credentials: 'include'
-                })
+
+                const userStore = useUserStore()
+                const providerName = 'U'
+                const providerKey = userStore.user.id
+
+                const res = await $fetch<PermissionResponse>(
+                    '/api/auth/userPermission',
+                    {
+                        method: 'GET',
+                        query: {
+                            providerName,
+                            providerKey
+                        },
+                        credentials: 'include'
+                    }
+                )
+
+                this.permissions = res
                 return res
-            } catch (error) {
-                console.error('Login failed:', error)
-                throw error
             } finally {
                 this.isLoading = false
             }
-        },
+        }
     },
+    persist: true
 })

@@ -1,6 +1,7 @@
 import {defineStore} from 'pinia'
 import type {TokenResponse} from '~/types/TokenResponse'
 import type {Profile} from "~/types/Profile";
+import {resetAllStores} from "~/stores/reset";
 
 export const useLoginStore = defineStore('loginStore', {
     state: () => ({
@@ -11,6 +12,7 @@ export const useLoginStore = defineStore('loginStore', {
         async fetchAsync(usernameOrEmail: string, password: string): Promise<unknown> {
             try {
                 this.isLoading = true
+                resetAllStores()
                 const res = await $fetch<unknown>('/api/auth/login', {
                     method: 'POST',
                     body: {
