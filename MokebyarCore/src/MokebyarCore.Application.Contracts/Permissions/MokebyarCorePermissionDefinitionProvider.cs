@@ -12,7 +12,7 @@ public class MokebyarCorePermissionDefinitionProvider : PermissionDefinitionProv
         var myGroup = context.AddGroup(MokebyarCorePermissions.GroupName);
 
         //Define your own permissions here. Example:
-        //myGroup.AddPermission(MokebyarCorePermissions.MyPermission1, L("Permission:MyPermission1"));
+        myGroup.AddPermission(MokebyarCorePermissions.MyPermission1, L("Permission:MyPermission1"));
     }
 
     private static LocalizableString L(string name)

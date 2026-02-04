@@ -7,5 +7,5 @@ public static class MokebyarCorePermissions
 
     
     //Add your own permission names. Example:
-    //public const string MyPermission1 = GroupName + ".MyPermission1";
+    public const string MyPermission1 = GroupName + ".MyPermission1";
 }

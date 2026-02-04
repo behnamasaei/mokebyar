@@ -167,10 +167,12 @@ import {reactive, ref} from 'vue';
 import type {TokenResponse} from '~/types/TokenResponse.ts'
 import {useTokenStore} from "~/stores/tokenStore";
 import {useLoginStore} from "~/stores/loginStore";
+import {useUserStore} from "~/stores/userStore";
 
 const tokenStore = useTokenStore()
 const profileStore = useProfileStore()
 const loginStore = useLoginStore()
+const userStore = useUserStore()
 
 
 const isLoading = computed(() => tokenStore.isLoading);
@@ -185,7 +187,8 @@ const formData = reactive({
 
 const handleLogin = async () => {
   await loginStore.fetchAsync(formData.email, formData.password)
- await profileStore.fetchAsync()
+  await profileStore.fetchAsync()
+  await userStore.fetchCurrentUserAsync()
 };
 </script>
 

@@ -1,0 +1,20 @@
+2️⃣ providerName
+
+❗ این Provider واقعی ABP است، نه Permission
+
+مقدار	معنی
+R	Role
+U	User
+T	Tenant
+C	Client
+3️⃣ providerKey
+
+شناسه‌ی Provider
+
+providerName	providerKey
+R	RoleName
+U	UserId
+T	TenantId
+C	ClientId
+
+=====================================================

@@ -14,8 +14,7 @@ export const useProfileStore = defineStore('profileStore', {
             try {
                 this.isLoading = true
                 const res = await $fetch<Profile>('/api/profile/myProfile', {
-                    method: 'GET',
-                    credentials: 'include'
+                    method: 'GET'
                 })
 
                 // persist tokens
