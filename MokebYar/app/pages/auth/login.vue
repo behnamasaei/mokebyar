@@ -2,7 +2,6 @@
   <!-- اضافه کردن فونت وزیرمتن برای ظاهر حرفه‌ای -->
 
   <div class="min-h-screen relative flex items-center justify-center overflow-hidden  dir-rtl">
-
     <!-- 1. تصویر پس‌زمینه با کیفیت و دراماتیک -->
     <div class="absolute inset-0 z-0">
       <img
@@ -37,6 +36,7 @@
           </div>
           <h2 class="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-emerald-200 to-white drop-shadow-md">
             ورود به حساب
+
           </h2>
           <p class="mt-3 text-lg text-gray-300 font-light">
             خوش آمدید، لطفا اطلاعات خود را وارد کنید
@@ -166,8 +166,11 @@ import haramImage from '../../../public/images/haram1.jpeg'
 import {reactive, ref} from 'vue';
 import type {TokenResponse} from '~/types/TokenResponse.ts'
 import {useTokenStore} from "~/stores/tokenStore";
+import {useLoginStore} from "~/stores/loginStore";
 
 const tokenStore = useTokenStore()
+const profileStore = useProfileStore()
+const loginStore = useLoginStore()
 
 
 const isLoading = computed(() => tokenStore.isLoading);
@@ -181,11 +184,8 @@ const formData = reactive({
 
 
 const handleLogin = async () => {
-  isLoading.value = true;
-
-
-  await tokenStore.fetchAsync(formData.email, formData.password)
-
+  await loginStore.fetchAsync(formData.email, formData.password)
+ await profileStore.fetchAsync()
 };
 </script>
 

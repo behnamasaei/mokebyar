@@ -1,3 +1,5 @@
+import type {TokenResponse} from "~/types/TokenResponse";
+
 export default defineEventHandler(async (event) => {
     process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0'
     
@@ -5,7 +7,7 @@ export default defineEventHandler(async (event) => {
     const body = await readBody(event)
     const { api } = useRuntimeConfig()
 
-    const res = await $fetch(`${api.serverUrl}/connect/token`, {
+    const res = await $fetch<TokenResponse>(`${api.serverUrl}/connect/token`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
@@ -17,6 +19,14 @@ export default defineEventHandler(async (event) => {
             password: body.password
         }),
         credentials: 'include'
+    })
+
+    setCookie(event, 'access_token', res.access_token, {
+        httpOnly: true,
+        secure: true,
+        sameSite: 'none',
+        path: '/',
+        maxAge: res.expires_in
     })
 
     return res

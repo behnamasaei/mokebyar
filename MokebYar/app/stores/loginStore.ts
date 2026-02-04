@@ -1,32 +1,24 @@
 import {defineStore} from 'pinia'
 import type {TokenResponse} from '~/types/TokenResponse'
+import type {Profile} from "~/types/Profile";
 
-export const useTokenStore = defineStore('tokenStore', {
+export const useLoginStore = defineStore('loginStore', {
     state: () => ({
         isLoading: false as boolean,
-        accessToken: '' as string,
-        tokenType: '' as string,
-        expiresIn: 0 as number,
     }),
 
     actions: {
-        async fetchAsync(usernameOrEmail: string, password: string): Promise<TokenResponse> {
+        async fetchAsync(usernameOrEmail: string, password: string): Promise<unknown> {
             try {
                 this.isLoading = true
-                const res = await $fetch<TokenResponse>('/api/auth/token', {
+                const res = await $fetch<unknown>('/api/auth/login', {
                     method: 'POST',
                     body: {
                         username: usernameOrEmail,
-                        password,
+                        password: password,
                     },
                     credentials: 'include'
                 })
-
-                // persist tokens
-                this.accessToken = res.access_token
-                this.tokenType = res.token_type
-                this.expiresIn = res.expires_in
-
                 return res
             } catch (error) {
                 console.error('Login failed:', error)

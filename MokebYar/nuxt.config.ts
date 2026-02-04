@@ -10,7 +10,7 @@ export default defineNuxtConfig({
                 dir: 'rtl'
             },
             link: [
-                { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+                {rel: 'icon', type: 'image/x-icon', href: '/favicon.ico'},
             ],
         },
     },
@@ -27,9 +27,14 @@ export default defineNuxtConfig({
     css: [
         '~/assets/main.scss'
     ],
-    modules: ['@primevue/nuxt-module', '@nuxtjs/tailwindcss', '@pinia/nuxt'],
+    modules: [
+        '@primevue/nuxt-module',
+        '@nuxtjs/tailwindcss',
+        '@pinia/nuxt',
+        'pinia-plugin-persistedstate/nuxt'],
     plugins: [
-        '~/plugins/vue-query.client'
+        '~/plugins/vue-query.client',
+        '~/plugins/pinia-persist.client.ts'
     ],
     primevue: {
         options: {
