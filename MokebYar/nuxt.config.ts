@@ -36,6 +36,9 @@ export default defineNuxtConfig({
         '~/plugins/vue-query.client',
         '~/plugins/pinia-persist.client.ts'
     ],
+    routeRules: {
+        '/dashboard': { appLayout: 'dashboard-layout' },
+    },
     primevue: {
         options: {
             theme: {
