@@ -19,10 +19,10 @@
         class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-emerald-500/20 rounded-full blur-3xl z-0 pointer-events-none"></div>
 
     <!-- 3. کانتینر اصلی کارت شیشه‌ای -->
-    <div class="relative z-10 w-full max-w-lg px-4">
+    <div class="relative z-10 w-full max-w-lg px-4 dir-rtl">
 
       <div
-          class="bg-white/5 backdrop-blur-2xl border border-white/10 rounded-3xl shadow-2xl overflow-hidden transform transition-all duration-500 hover:scale-[1.01]">
+          class="bg-white/5 backdrop-blur-lg border border-white/10 rounded-3xl shadow-2xl overflow-hidden transform transition-all duration-500 hover:scale-[1.01]">
 
         <!-- هدر کارت -->
         <div class="px-10 pt-10 pb-6 text-center">
@@ -165,8 +165,12 @@
 import haramImage from '../../../public/images/haram1.jpeg'
 import {reactive, ref} from 'vue';
 import type {TokenResponse} from '~/types/TokenResponse.ts'
+import {useTokenStore} from "~/stores/tokenStore";
 
-const isLoading = ref(false);
+const tokenStore = useTokenStore()
+
+
+const isLoading = computed(() => tokenStore.isLoading);
 const showPassword = ref(false);
 
 const formData = reactive({
@@ -179,18 +183,9 @@ const formData = reactive({
 const handleLogin = async () => {
   isLoading.value = true;
 
-  const {data: tokenRes, error, status} = await useFetch<TokenResponse>(
-      '/api/auth/token',
-      {
-        method: 'POST',
-        body: {
-          username: formData.email,
-          password: formData.password
-        },
-      }
-  )
 
-  console.log(tokenRes.value.access_token)
+  await tokenStore.fetchAsync(formData.email, formData.password)
+
 };
 </script>
 

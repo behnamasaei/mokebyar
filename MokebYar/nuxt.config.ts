@@ -2,6 +2,18 @@
 import Aura from '@primeuix/themes/aura';
 
 export default defineNuxtConfig({
+    app: {
+        head: {
+            title: 'Nuxt', // default fallback title
+            htmlAttrs: {
+                lang: 'fa-IR',
+                dir: 'rtl'
+            },
+            link: [
+                { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+            ],
+        },
+    },
     compatibilityDate: '2025-07-15',
     runtimeConfig: {
         api: {
@@ -15,7 +27,7 @@ export default defineNuxtConfig({
     css: [
         '~/assets/main.scss'
     ],
-    modules: ['@primevue/nuxt-module', '@nuxtjs/tailwindcss'],
+    modules: ['@primevue/nuxt-module', '@nuxtjs/tailwindcss', '@pinia/nuxt'],
     plugins: [
         '~/plugins/vue-query.client'
     ],
