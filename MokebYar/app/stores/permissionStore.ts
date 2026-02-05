@@ -5,7 +5,7 @@ import {useUserStore} from "~/stores/userStore";
 export const usePermissionStore = defineStore('permissionStore', {
     state: () => ({
         isLoading: false,
-        permissions: null as PermissionResponse | null
+        permissions: {} as PermissionResponse
     }),
 
     actions: {

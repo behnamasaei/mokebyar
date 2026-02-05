@@ -37,7 +37,7 @@ export default defineNuxtConfig({
         '~/plugins/pinia-persist.client.ts'
     ],
     routeRules: {
-        '/dashboard': { appLayout: 'dashboard-layout' },
+        '/dashboard/*': { appLayout: 'dashboard-layout' },
     },
     primevue: {
         options: {
@@ -47,10 +47,11 @@ export default defineNuxtConfig({
         }
     },
     devServer: {
+        host: 'localhost',
         https: {
             key: './localhost+2-key.pem',
             cert: './localhost+2.pem'
         },
         port: 3000,
-    }
+    },
 })

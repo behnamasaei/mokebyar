@@ -4,3 +4,17 @@
 *, body, html {
   font-family: 'Vazirmatn', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
 }
+
+.dir-rtl {
+  direction: rtl;
+}
+
+.dir-ltr {
+  direction: ltr;
+}
+
+.ltr-text{
+  direction: ltr;
+  unicode-bidi: isolate;
+  text-align: center;
+}

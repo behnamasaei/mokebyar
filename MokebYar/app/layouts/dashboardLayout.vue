@@ -8,14 +8,10 @@
           <i class="pi pi-apple px-2"></i>
         </template>
         <template #end>
-          <i class="pi pi-video px-2"/>
-          <i class="pi pi-wifi px-2"/>
-          <i class="pi pi-volume-up px-2"/>
-          <span class="px-2">
+          <span class="px-2 ltr-text">
             {{ formattedNow }}
           </span>
-          <i class="pi pi-search px-2"/>
-          <i class="pi pi-bars px-2"/>
+          <i class="pi pi-calendar-clock px-2"/>
         </template>
       </Menubar>
 
@@ -31,139 +27,37 @@ import {DateTime} from "luxon";
 import jalaali from "jalaali-js";
 
 
+const router = useRouter();
 const toast = useToast();
+const permissionStore = usePermissionStore();
 const now = ref(DateTime.now().setZone("Asia/Tehran"));
 const timer = ref<number | null>(null)
-const menubarItems = ref([
-  {
-    label: 'Finder',
-    class: 'menubar-root'
-  },
-  {
-    label: 'File',
-    items: [
-      {
-        label: 'New',
-        icon: 'pi pi-fw pi-plus',
-        items: [
-          {
-            label: 'Bookmark',
-            icon: 'pi pi-fw pi-bookmark'
-          },
-          {
-            label: 'Video',
-            icon: 'pi pi-fw pi-video'
-          },
 
-        ]
-      },
-      {
-        label: 'Delete',
-        icon: 'pi pi-fw pi-trash'
-      },
-      {
-        separator: true
-      },
-      {
-        label: 'Export',
-        icon: 'pi pi-fw pi-external-link'
-      }
-    ]
-  },
-  {
-    label: 'Edit',
-    items: [
-      {
-        label: 'Left',
-        icon: 'pi pi-fw pi-align-left'
-      },
-      {
-        label: 'Right',
-        icon: 'pi pi-fw pi-align-right'
-      },
-      {
-        label: 'Center',
-        icon: 'pi pi-fw pi-align-center'
-      },
-      {
-        label: 'Justify',
-        icon: 'pi pi-fw pi-align-justify'
-      },
+const menubarItems = computed(() => {
+  const items = []
 
-    ]
-  },
-  {
-    label: 'Users',
-    items: [
-      {
-        label: 'New',
-        icon: 'pi pi-fw pi-user-plus',
-      },
-      {
-        label: 'Delete',
-        icon: 'pi pi-fw pi-user-minus',
+  const permissions = permissionStore.permissions
 
-      },
-      {
-        label: 'Search',
-        icon: 'pi pi-fw pi-users',
-        items: [
-          {
-            label: 'Filter',
-            icon: 'pi pi-fw pi-filter',
-            items: [
-              {
-                label: 'Print',
-                icon: 'pi pi-fw pi-print'
-              }
-            ]
-          },
-          {
-            icon: 'pi pi-fw pi-bars',
-            label: 'List'
-          }
-        ]
+  if (permissions?.groups?.some(x => x.name === 'AbpTenantManagement')) {
+    items.push({
+      label: 'مستاجران',
+      class: 'menubar-root',
+      icon: 'pi pi-building-columns',
+      command: () => {
+        router.push('/dashboard/tenants')
       }
-    ]
-  },
-  {
-    label: 'Events',
-    items: [
-      {
-        label: 'Edit',
-        icon: 'pi pi-fw pi-pencil',
-        items: [
-          {
-            label: 'Save',
-            icon: 'pi pi-fw pi-calendar-plus'
-          },
-          {
-            label: 'Delete',
-            icon: 'pi pi-fw pi-calendar-minus'
-          }
-        ]
-      },
-      {
-        label: 'Archive',
-        icon: 'pi pi-fw pi-calendar-times',
-        items: [
-          {
-            label: 'Remove',
-            icon: 'pi pi-fw pi-calendar-minus'
-          }
-        ]
-      }
-    ]
-  },
-  {
-    label: 'Quit'
+    })
   }
-]);
+
+  return items
+})
 
 onMounted(() => {
   timer.value = window.setInterval(() => {
     now.value = DateTime.now().setZone("Asia/Tehran")
   }, 1000)
+
+
 })
 
 onBeforeUnmount(() => {
@@ -175,7 +69,7 @@ onBeforeUnmount(() => {
 const formattedNow = computed(() => {
   if (!now.value) return ''
 
-  const { jy, jm, jd } = jalaali.toJalaali(
+  const {jy, jm, jd} = jalaali.toJalaali(
       now.value.year,
       now.value.month,
       now.value.day
