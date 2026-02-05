@@ -3,6 +3,7 @@ import {ref, reactive, onMounted, watch} from 'vue'
 import Toast from 'primevue/toast'
 import {useToast} from 'primevue/usetoast'
 import {useTenantStore} from "~/stores/tenantStore";
+import type {NewTenant} from "~/types/NewTenant";
 
 /** =====================
  * Types (ABP Swagger)
@@ -24,10 +25,6 @@ interface PagedResult<T> {
 const toast = useToast()
 const tenantStore = useTenantStore()
 
-const tenants = ref<TenantDto[]>([])
-const totalCount = ref(0)
-const loading = ref(false)
-
 const page = ref(0)
 const rows = ref(10)
 const filter = ref('')
@@ -37,7 +34,9 @@ const isEdit = ref(false)
 
 const form = reactive({
   id: '',
-  name: ''
+  name: '',
+  email: '',
+  password: '',
 })
 
 /** =====================
@@ -53,11 +52,15 @@ async function fetchTenants() {
 }
 
 async function createTenant() {
-  await api('/api/multi-tenancy/tenants', {
+  await api('/api/tenant/tenant', {
     method: 'POST',
-    body: {name: form.name}
+    body: {
+      name: form.name,
+      adminEmailAddress: form.email,
+      adminPassword: form.password
+    } as NewTenant
   })
-  toast.add({severity: 'success', summary: 'Tenant created'})
+  toast.add({severity: 'success', summary: 'Tenant created', life: 3000})
   dialogVisible.value = false
   fetchTenants()
 }
@@ -67,14 +70,14 @@ async function updateTenant() {
     method: 'PUT',
     body: {name: form.name}
   })
-  toast.add({severity: 'success', summary: 'Tenant updated'})
+  toast.add({severity: 'success', summary: 'Tenant updated', life: 3000})
   dialogVisible.value = false
   fetchTenants()
 }
 
 async function deleteTenant(id: string) {
   await api(`/${id}`, {method: 'DELETE'})
-  toast.add({severity: 'success', summary: 'Tenant deleted'})
+  toast.add({severity: 'success', summary: 'Tenant deleted', life: 3000})
   fetchTenants()
 }
 
@@ -119,7 +122,7 @@ watch([page, rows], fetchTenants)
     <!-- Table -->
     <DataTable
         :value="tenantStore.tenants"
-        :loading="loading"
+        :loading="tenantStore.isLoading"
         :rows="rows"
         :totalRecords="tenantStore.totalCount"
         paginator
@@ -146,6 +149,19 @@ watch([page, rows], fetchTenants)
         <label class="block text-sm font-medium text-gray-700">نام تننت</label>
         <InputText v-model="form.name" class="w-full"/>
       </div>
+
+      <template v-if="!isEdit">
+        <div>
+          <label class="block text-sm font-medium text-gray-700">ایمیل مستاجر</label>
+          <InputText v-model="form.email" class="w-full"/>
+        </div>
+
+        <div>
+          <label class="block text-sm font-medium text-gray-700">رمزعبور</label>
+          <Password v-model="form.password" class="w-full"/>
+        </div>
+
+      </template>
 
       <div class="flex justify-end gap-2">
         <Button label="انصراف" severity="secondary" @click="dialogVisible = false"/>
