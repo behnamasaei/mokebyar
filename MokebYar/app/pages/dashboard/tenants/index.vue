@@ -66,7 +66,7 @@ async function createTenant() {
 }
 
 async function updateTenant() {
-  await api(`/api/multi-tenancy/tenants/${form.id}`, {
+  await api(`/${form.id}`, {
     method: 'PUT',
     body: {name: form.name}
   })
